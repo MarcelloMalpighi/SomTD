@@ -5,7 +5,7 @@ SomTD is a tool designed for detecting de novo TE insertions and evaluating the 
 - A lightweight CNN, is applied at the read pair level to extract every suitable read pair, contrasting previous machine or deep learning applications that focused on the insertion level for detection or genotyping of insertions (fig2). It is capable of distinguishing chimera artifacts via features that are difficult to discern through conventionally designed rules. Other tools must discard some read pairs relating to a potential insertion to generate a fixed-shape graph at the insertion level for CNN, which results in data loss. By contrast, SomTD applies deep learning at the read pair level, ensuring input shape consistency, and eliminating data loss. The attributes of CNN are also well-suited for managing the multi-channel information furnished by a read pair.  
 - SomTD introduces a new metric to assess transposition burden, which remains comparable across bulk and single-cell sequencing data. The enhanced sensitivity of CNN at the read pair level allows for precise calculation of this metric in bulk sequencing data.  
 <img src="https://github.com/MarcelloMalpighi/SomTD/blob/main/SomTD_fig1.png" height="197px" width="320px"/>  
-<img src="https://github.com/MarcelloMalpighi/SomTD/blob/main/SomTD_fig2_1.png" height="301px" width="570px"/>  
+<img src="https://github.com/MarcelloMalpighi/SomTD/blob/main/SomTD_fig2.png" height="301px" width="570px"/>  
 
 ## Dependencies  
 1. bedtools  
