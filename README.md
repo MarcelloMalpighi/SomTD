@@ -1,11 +1,11 @@
 # SomTD  
-Retrotransposons contribute approximately 40 % of the human genome and subfamilies of ALU, LINE1 and SVA elements remain actively mobile. Nonetheless, the detection of de novo transposable element (TE) insertions poses a significant challenge due to the interference of chimera artifacts. Additionally, evaluating the insertion rate with bulk or single-cell sequencing data presents certain challenges.  
+Retrotransposons contribute approximately 40 % of the human genome and subfamilies of ALU, LINE1 and SVA elements remain actively mobile. Nonetheless, the detection of de novo transposable element (TE) insertions poses a significant challenge due to chimera artifacts. Additionally, evaluating the insertion rate with bulk or single-cell sequencing data presents certain challenges.  
 SomTD is a tool designed for detecting de novo TE insertions and evaluating the insertion rate utilizing both traditional, rule-based algorithms and a convolutional neural network (CNN) model. It is applicable for both bulk and single-cell sequencing data. Notable features of SomTD are as follows:  
 - SomTD prioritizes split read pairs, subsequently extracting discordant read pairs as required. The supplementary alignments of the split read pairs are utilized for pinpointing the location because TE part of the clipped read may be identified as the primary alignment, potentially resulting in a misleading insertion location around a reference insertion (fig1).  
-- A lightweight CNN, is applied at the read pair level to extract every suitable read pair, contrasting previous machine or deep learning applications that focused on the insertion level for detection or genotyping of insertions (fig2). It is capable of distinguishing chimera artifacts via features that are difficult to discern through conventionally designed rules. Other tools must discard some read pairs relating to a potential insertion to generate a fixed-shape graph at the insertion level for CNN, which results in data loss. By contrast, SomTD applies deep learning at the read pair level, ensuring input shape consistency, and eliminating data loss. The attributes of CNN are also well-suited for managing the multi-channel information furnished by a read pair.  
-- SomTD introduces a new metric to assess transposition burden, which remains comparable across bulk and single-cell sequencing data. The enhanced sensitivity of CNN at the read pair level allows for precise calculation of this metric in bulk sequencing data.  
+- A lightweight CNN, is applied to extract every suitable read pair, contrasting previous machine/deep learning applications focusing on the insertion level for insertion detection or genotyping (fig2). This approach allows for the detection of weak signals of rare insertions by minimizing data loss and distinguishing chimera artifacts via features difficult to discern.  
+- SomTD estimates the insertion rate based on the cumulative sum of variant allele fraction including rare insertions in bulk sequencing data based on its elaborated sensitivity and accuracy, which remains comparable across bulk and single-cell sequencing data.  
 <img src="https://github.com/MarcelloMalpighi/SomTD/blob/main/SomTD_fig1.png" height="197px" width="320px"/>  
-<img src="https://github.com/MarcelloMalpighi/SomTD/blob/main/SomTD_fig2.png" height="301px" width="570px"/>  
+
 
 ## Dependencies  
 1. bedtools  
@@ -53,10 +53,4 @@ Options:
                         number of threads, optional, default: 2
   -m MEMORY, --memory=MEMORY
                         memory per thread used, optional, defalut: 2G
-  -d DISTREF, --distRef=DISTREF
-                        minimum distance from reference insertions,
-                        nonreference insertions with a shorter one will be
-                        ignored, optional, default: 0
-  -s, --selfFilter      filter insertions shared by all input samples,
-                        optional, default: disabled
 ```
