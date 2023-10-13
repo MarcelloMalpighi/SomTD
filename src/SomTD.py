@@ -42,16 +42,16 @@ parser.add_option('-G', '--Gindex', type = 'str', dest = 'Gindex', help = 'genom
 parser.add_option('-T', '--Tindex', type = 'str', dest = 'Tindex', help = 'transposon reference sequence bwa index, mandatory')
 parser.add_option('-p', '--parallel', type = 'str', dest = 'parallel', help = 'number of threads, optional, default: 2') # need to be changed for a global control
 parser.add_option('-m', '--memory', type = 'str', dest = 'memory', help = 'memory per thread used, optional, defalut: 2G') # need to be changed for a global memory control
-parser.add_option('-d', '--distRef', type = 'str', dest = 'distRef', help = 'minimum distance from reference insertions, nonreference insertions with a shorter one will be ignored, optional, default: 0')
-parser.add_option('-s', '--selfFilter', dest = 'selfFilter', action = 'store_true', help = 'filter insertions shared by all input samples, optional, default: disabled ')
+# parser.add_option('-d', '--distRef', type = 'str', dest = 'distRef', help = 'minimum distance from reference insertions, nonreference insertions with a shorter one will be ignored, optional, default: 0')
+# parser.add_option('-s', '--selfFilter', dest = 'selfFilter', action = 'store_true', help = 'filter insertions shared by all input samples, optional, default: disabled ')
 
 (options, args) = parser.parse_args()
 input1,input2,outputPath,Greference,Treference,Gindex,Tindex,fragLen,fragStd,readLen,TreferenceRecom = options.input1,options.input2,str(options.outputPath),str(options.Greference),str(options.Treference),str(options.Gindex),str(options.Tindex),str(options.fragLen),str(options.fragStd),str(options.readLen),str(options.TreferenceRecom)
 cutoff = str(options.cutoff) if options.cutoff else "10"
 parallel = str(options.parallel) if options.parallel else "2"
 memory = str(options.memory) if options.memory else "2G"
-distRef = str(options.distRef) if options.distRef else "0"
-selfFilter = options.selfFilter if options.selfFilter else False
+# distRef = str(options.distRef) if options.distRef else "0"
+# selfFilter = options.selfFilter if options.selfFilter else False
 
 if input1 and outputPath and Greference and Treference and Gindex and Tindex:
     print("SomTD begins, time: "+ str(datetime.datetime.now()), file=sys.stderr)
